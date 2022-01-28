@@ -1,0 +1,39 @@
+#breadc {
+  .nuxt-link-exact-active {
+    background-color: $light !important;
+    color: $dark2 !important;
+    padding: 10px;
+  }
+  a {
+    &:hover {
+      color: $dark !important;
+      background-color: $light !important;
+    }
+  }
+}
+.breadc {
+  background-color: $light;
+  padding: 10px 0;
+}
+#bb {
+  ol {
+    list-style: none;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  li {
+    display: inline;
+    text-transform: capitalize;
+  }
+  li:after {
+    font-family: bootstrap-icons !important;
+    content: "\f285";
+    display: inline;
+    font-size: 0.9em;
+    color: #aaa;
+    padding: 0 0.0725em 0 0.15em;
+  }
+  li:last-child:after {
+    content: "";
+  }
+}

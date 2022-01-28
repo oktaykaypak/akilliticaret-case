@@ -1,0 +1,74 @@
+#info {
+  background-color: $light;
+  color: $text-dark;
+  padding: 7px 0;
+}
+.nuxt-link-exact-active {
+  background-color: $primary-color;
+  color: $white;
+  padding: 10px;
+}
+.icon-user {
+  i {
+    font-size: 25px;
+  }
+}
+.menu {
+  background-color: $primary-color;
+  color: $white;
+  div {
+    div {
+      div {
+        &:nth-child(1) {
+          border-left: 0 !important;
+        }
+      }
+    }
+  }
+  &-item {
+    border-left: 1px solid $primary-color-dark;
+    padding: 15px 10px;
+    @extend %transAnimation;
+
+    &:hover {
+      background-color: $primary-color-dark;
+      cursor: pointer;
+    }
+  }
+}
+
+#nav {
+  color: $white;
+
+  .nuxt-link-exact-active {
+    background-color: $primary-color;
+    color: $white;
+    padding: 10px;
+  }
+  a {
+    color: $white;
+
+    &:hover {
+      background-color: $primary-color-dark;
+      cursor: pointer;
+    }
+  }
+}
+
+.logo {
+  color: $white;
+
+  .nuxt-link-exact-active {
+    background-color: $white;
+    color: $white;
+    padding: 10px;
+  }
+  a {
+    color: $white;
+
+    &:hover {
+      background-color: $white;
+      cursor: pointer;
+    }
+  }
+}

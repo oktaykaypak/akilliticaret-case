@@ -1,0 +1,88 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+}
+a {
+  color: $text-dark;
+  text-decoration: none;
+  padding: 10px;
+  @extend %transAnimation;
+  &:hover {
+    text-decoration: none;
+    background-color: $dark2;
+    color: $white;
+  }
+}
+input[type="text"] {
+  border-radius: 0px;
+  border: 1px solid $light2;
+  color: $text-light;
+  background: $light;
+  width: 100%;
+  padding: 10px;
+  @extend %transAnimation;
+  &:focus-visible {
+    border: 1px solid $primary-color;
+
+    outline: 0 !important;
+    @extend %boxShadow-red;
+  }
+}
+
+select {
+  border-radius: 0px;
+  border: 1px solid $light2;
+  color: $text-light;
+  background: $light;
+  width: 100%;
+  padding: 10px;
+  @extend %transAnimation;
+  &:focus-visible {
+    border: 1px solid $primary-color;
+
+    outline: 0 !important;
+    @extend %boxShadow-red;
+  }
+}
+
+.btn {
+  border-radius: 0;
+  &-primary {
+    background-color: $primary-color !important;
+    border: 1px solid $primary-color !important;
+    color: $white !important;
+    @extend %transAnimation;
+
+    &:focus {
+      @extend %boxShadow-red;
+    }
+    &:focus-visible {
+      border: 1px solid $primary-color !important;
+      outline: 0 !important;
+
+      @extend %boxShadow-red;
+    }
+  }
+}
+.c-pointer {
+  &:hover {
+    cursor: pointer;
+  }
+}
+.list-icon {
+  background-color: $light;
+  padding: 7px;
+  line-height: 0;
+  font-size: 20px;
+  @extend %transAnimation;
+  &:hover {
+    @extend %boxShadow-red;
+    cursor: pointer;
+  }
+}
+.content {
+  min-height: calc(100vh - 326px);
+}
