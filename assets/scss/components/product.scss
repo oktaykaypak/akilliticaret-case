@@ -6,6 +6,7 @@
   min-height: 400px;
   @extend %transAnimation;
   overflow: hidden;
+  position: relative;
   &:hover {
     @extend %boxShadow-red;
     border-color: $primary-color !important;
@@ -27,7 +28,10 @@
     @extend %transAnimation;
   }
   .cla {
-    transform: translateY(-200px);
+    position: absolute;
+    top: 0;
+    width: 100%;
+    left: 1rem;
     opacity: 0;
     @extend %transAnimation;
   }
@@ -38,8 +42,14 @@
       transform: translateY(200px);
     }
     .cla {
-      transform: translateY(0);
+      top: 65%;
       opacity: 1;
+    }
+    @media only screen and (max-width: 991px) {
+      .cla {
+        top: 70%;
+        opacity: 1;
+      }
     }
   }
 }

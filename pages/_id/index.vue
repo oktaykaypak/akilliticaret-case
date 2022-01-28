@@ -76,11 +76,11 @@
               <div class="row info">
                 <div class="col-12">
                   <div class="row">
-                    <div class="col-12">
+                    <div class="col-12 text-center">
                       {{ productNameFilter(item.name) }}
                     </div>
                   </div>
-                  <div class="row">
+                  <div class="row mt-5">
                     <div class="col-12 text-center price">
                       {{ item.price }}TL
                     </div>
