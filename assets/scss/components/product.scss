@@ -1,0 +1,45 @@
+.price {
+  font-size: 16px;
+  font-weight: 600;
+}
+.box {
+  min-height: 400px;
+  @extend %transAnimation;
+  overflow: hidden;
+  &:hover {
+    @extend %boxShadow-red;
+    border-color: $primary-color !important;
+  }
+
+  .bi {
+    font-size: 15px;
+    @extend %transAnimation;
+
+    &:hover {
+      color: $primary-color;
+    }
+  }
+  .img {
+    z-index: 99999;
+  }
+
+  .info {
+    @extend %transAnimation;
+  }
+  .cla {
+    transform: translateY(-200px);
+    opacity: 0;
+    @extend %transAnimation;
+  }
+  &:hover {
+    @extend %transAnimation;
+
+    .info {
+      transform: translateY(200px);
+    }
+    .cla {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+}

@@ -50,6 +50,71 @@
           </div>
         </div>
         <!-- Product area -->
+        <div class="row">
+          <div
+            v-for="item in products"
+            :key="item.id"
+            class="col-sm-3 p-1 product"
+            :title="item.name"
+          >
+            <div class="border p-2 box">
+              <div class="row">
+                <div class="col-12">
+                  <img
+                    :src="
+                      item.prodImages !== null
+                        ? imgPath + item.prodImages
+                        : require(`@/assets/img/null.png`)
+                    "
+                    alt=""
+                    class="w-100 img"
+                  />
+                </div>
+              </div>
+              <div class="row info">
+                <div class="col-12">
+                  <div class="row">
+                    <div class="col-12">
+                      {{ productNameFilter(item.name) }}
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12 text-center price">
+                      {{ item.price }}TL
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12 text-center">
+                      <b>Taksitli Fiyat:</b>
+                      <small> 3x{{ (item.price / 3).toFixed(2) }}TL </small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row cla">
+                <div class="col-12">
+                  <div class="row">
+                    <div class="col-12">
+                      <input type="number" v-model="quantity" />
+                    </div>
+                  </div>
+                  <div class="row mt-3 text-center">
+                    <div class="col-4"><i class="bi bi-cart"></i></div>
+                    <div class="col-4"><i class="bi bi-heart"></i></div>
+                    <div class="col-4"><i class="bi bi-sliders"></i></div>
+                  </div>
+                  <div class="row mt-2">
+                    <div class="col-12">
+                      <button type="button" class="btn btn-primary w-100">
+                        Urunu incele <i class="bi bi-arrow-right"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
     <section v-else class="mt-5">
@@ -71,6 +136,9 @@ export default {
 
   data() {
     return {
+      isHover: false,
+      imgPath: '',
+      quantity: 1,
       isNullPage: false,
       selectedSort: {
         type: 'priceAsc',
@@ -111,13 +179,46 @@ export default {
       products: (state) => state.products.products,
     }),
   },
-  beforeMount() {
+  async beforeMount() {
+    await this.setAuth()
+
     const payload = { page: 0 }
     this.getProduct(payload)
   },
 
   methods: {
-    ...mapActions({ getProduct: 'products/getProduct' }),
+    ...mapActions({
+      getProduct: 'products/getProduct',
+    }),
+    productNameFilter(name) {
+      const text = name
+      const splitName = text.split(' ')
+
+      return (
+        splitName[0] +
+        ' ' +
+        splitName[1] +
+        ' ' +
+        splitName[2] +
+        ' ' +
+        splitName[3]
+      )
+    },
+    async setAuth() {
+      let token
+      if (!localStorage.getItem('token')) {
+        const payload = {
+          userName: process.env.username,
+          password: process.env.pass,
+        }
+        const { data } = await this.$axios.post(`Auth/Login`, payload)
+        token = data.data.token
+        localStorage.setItem('token', token)
+      } else {
+        token = localStorage.getItem('token')
+      }
+      this.$axios.setToken(token, 'Bearer')
+    },
     pageName() {
       const name = menu.find((x) => x.url === this.$route.path)
       name.url === '/beyaz-esya'

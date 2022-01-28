@@ -47,8 +47,9 @@ export default {
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
     baseURL: 'https://api.akilliticaretim.com/api/',
+    headers: { GUID: 'A3A7-CD3A-FEB6-15A3' },
   },
-  env: { GUID: 'A3A7-CD3A-FEB6-15A3' },
+  env: { username: 'user', pass: '123456' },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},

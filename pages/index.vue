@@ -8,7 +8,7 @@
         indicators
         img-width="1920"
         img-height="1080"
-        interval="3000"
+        :interval="3000"
       >
         <b-carousel-slide
           caption="Mukemmel Beyaz Esya Indirimleri"
@@ -35,11 +35,6 @@ export default {
     return {
       slide: 0,
       sliding: null,
-    }
-  },
-  methods: {
-    setAuth(){
-      
     }
   },
 }

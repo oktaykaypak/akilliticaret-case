@@ -16,7 +16,7 @@ a {
     color: $white;
   }
 }
-input[type="text"] {
+input {
   border-radius: 0px;
   border: 1px solid $light2;
   color: $text-light;
@@ -30,8 +30,10 @@ input[type="text"] {
     outline: 0 !important;
     @extend %boxShadow-red;
   }
+  &[type="number"] {
+    text-align: center;
+  }
 }
-
 select {
   border-radius: 0px;
   border: 1px solid $light2;
@@ -85,4 +87,10 @@ select {
 }
 .content {
   min-height: calc(100vh - 326px);
+}
+
+.bi {
+  &:hover {
+    cursor: pointer;
+  }
 }

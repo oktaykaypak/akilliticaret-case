@@ -1,16 +1,19 @@
 const product = {
-  state: { products: [] },
+  state: {
+    products: [],
+  },
   mutations: {
     setProduct(state, data) {
       state.products = data
     },
   },
   actions: {
-    async getProduct(commit, payload) {
+    async getProduct({ commit }, payload) {
       const { data, status } = await this.$axios.get(
         `Product/ListProducts/${payload.page}`
       )
-      commit('setProducts', status ? data : [])
+      console.log(data.data)
+      commit('setProduct', status === 200 ? data.data : [])
     },
   },
 }
