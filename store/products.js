@@ -14,6 +14,9 @@ const product = {
       )
       console.log(data.data)
       commit('setProduct', status === 200 ? data.data : [])
+      if (status === 401) {
+        localStorage.removeItem('token')
+      }
     },
   },
 }
