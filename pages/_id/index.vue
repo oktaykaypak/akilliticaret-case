@@ -9,17 +9,19 @@
       <div class="container">
         <!-- jumbotron  -->
         <div class="row">
-          <div class="col-12 d-flex justify-content-center align-items-center">
-            <h4 class="mr-1">{{ pageName() }}</h4>
-            kategorisi icerigindeki urunler listelenmektedir.
+          <div class="col-12">
+            <small>
+              <b>{{ pageName() }}</b>
+              &nbsp;kategorisi icerigindeki urunler listelenmektedir.</small
+            >
           </div>
         </div>
         <!-- Filter Sorter -->
         <div class="row align-items-center mt-2">
-          <div class="col-6">
+          <div class="col-sm-6">
             <div class="row">
               <div class="col-6">
-                <select v-model="selectedSort">
+                <select @change="changeSort()" v-model="selectedSort">
                   <option
                     v-for="sort in sortList"
                     :key="sort.type"
@@ -36,7 +38,7 @@
               </div>
             </div>
           </div>
-          <div class="col-6">
+          <div class="col-sm-6 lister">
             <div class="row">
               <div class="col-12 d-flex justify-content-end">
                 <div class="list-icon mr-2">
@@ -50,11 +52,11 @@
           </div>
         </div>
         <!-- Product area -->
-        <div class="row">
+        <div class="row mt-3">
           <div
-            v-for="item in products"
+            v-for="item in sortedProducts"
             :key="item.id"
-            class="col-sm-3 p-1 product"
+            class="col-sm-3 my-2 product "
             :title="item.name"
           >
             <div class="border p-2 box">
@@ -130,6 +132,7 @@
 
 <script>
 import { mapActions, mapState } from 'vuex'
+import _ from 'lodash'
 import menu from '../../utils/menu'
 export default {
   name: 'CategoryPage',
@@ -140,6 +143,7 @@ export default {
       imgPath: '',
       quantity: 1,
       isNullPage: false,
+      sortedProducts: '',
       selectedSort: {
         type: 'priceAsc',
         sort: 'asc',
@@ -183,13 +187,24 @@ export default {
     await this.setAuth()
 
     const payload = { page: 0 }
-    this.getProduct(payload)
+    await this.getProduct(payload)
+
+    this.changeSort()
   },
 
   methods: {
     ...mapActions({
       getProduct: 'products/getProduct',
     }),
+    changeSort() {
+      const sorted = _.orderBy(
+        this.products,
+        (o) => o[this.selectedSort.key],
+        this.selectedSort.sort
+      )
+      this.sortedProducts = sorted
+      console.log(sorted)
+    },
     productNameFilter(name) {
       const text = name
       const splitName = text.split(' ')

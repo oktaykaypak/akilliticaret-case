@@ -90,7 +90,27 @@ select {
 }
 
 .bi {
+  &.bi-x-lg {
+    font-size: 20px;
+  }
+  &.bi-person {
+    font-size: 20px;
+  }
+  &.bi-cart {
+    font-size: 20px;
+  }
+  &.bi-list {
+    font-size: 20px;
+  }
+  font-size: 15px;
   &:hover {
     cursor: pointer;
+  }
+}
+.lister {
+}
+@media only screen and (max-width: 991px) {
+  .lister {
+    margin-top: 10px;
   }
 }
