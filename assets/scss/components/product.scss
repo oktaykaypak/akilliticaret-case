@@ -3,7 +3,6 @@
   font-weight: 600;
 }
 .box {
-  min-height: 400px;
   @extend %transAnimation;
   overflow: hidden;
   position: relative;
